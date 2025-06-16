@@ -23,14 +23,9 @@ To run the script automatically when you log in:
 $Trigger = New-ScheduledTaskTrigger -AtLogOn
 $Action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument '-WindowStyle Hidden -File C:\GIT\AutoConnectVPN\AutoConnectVPN.ps1 -VpnName My-Manual-VPN'
 Register-ScheduledTask -TaskName "AutoConnectVPN" -Trigger $Trigger -Action $Action
+schtasks /Run /TN "AutoConnectVPN"    # To run newly created task
 ```
-
 🛠 Make sure to update the -File path to where your script is stored and the -VpnName.
-
-To run newly created task:
-```powershell
-schtasks /Run /TN "AutoConnectVPN"
-```
 
 ## Manage Scheduled Tasks (UI)
 1) Press Win + R, type taskschd.msc, and press Enter.
