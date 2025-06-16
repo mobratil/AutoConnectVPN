@@ -19,13 +19,16 @@ The script runs in a loop, checking every 60 seconds if any VPN is connected. If
 
 ## Run on Windows Logon
 To run the script automatically when you log in:
+> ⚠️ You should run the following commands in a PowerShell **window with Administrator privileges**.
+> 
+> 🛠 Make sure to update the -File path to where your script is stored and the -VpnName.
+
 ```powershell
 $Trigger = New-ScheduledTaskTrigger -AtLogOn
 $Action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument '-WindowStyle Hidden -File C:\GIT\AutoConnectVPN\AutoConnectVPN.ps1 -VpnName My-Manual-VPN'
 Register-ScheduledTask -TaskName "AutoConnectVPN" -Trigger $Trigger -Action $Action
 schtasks /Run /TN "AutoConnectVPN"    # To run newly created task
 ```
-🛠 Make sure to update the -File path to where your script is stored and the -VpnName.
 
 ## Manage Scheduled Tasks (UI)
 1) Press Win + R, type taskschd.msc, and press Enter.
