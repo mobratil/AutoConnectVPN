@@ -1,4 +1,23 @@
-﻿param (
+﻿<#
+.SYNOPSIS
+Automatically connects to a VPN on Windows.
+
+.DESCRIPTION
+Checks every 60 seconds if any VPN is connected. If not, it connects to the specified VPN using `rasdial`.
+
+.PARAMETER VpnName
+Name of the VPN connection as configured in Windows.
+
+.PARAMETER LogFile
+(Optional) Path to a file where logs will be saved.
+
+.EXAMPLE
+.\AutoConnectVPN.ps1 -VpnName "My-Manual-VPN"
+
+.EXAMPLE
+.\AutoConnectVPN.ps1 -VpnName "My-Manual-VPN" -LogFile "C:\temp\vpn-log.txt"
+#>
+param (
     [Parameter(Mandatory=$true)]
     [string]$VpnName,
     [string]$LogFile
